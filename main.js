@@ -15,10 +15,12 @@ let tabs = document.querySelectorAll(".task-tabs div")
 let taskList = [];
 let mode = "all";
 let filterList = [];
+
 addButton.addEventListener("click", addTask); // event, function
+taskInput.addEventListener("focus",function() {taskInput.value=""});
 
 for (let i = 1; i < tabs.length; i++) {
-    tabs[i].addEventListener("click", function (event) { filter(event); });
+    tabs[i].addEventListener("click", function (event) { filter(event); }); // focus 뒀을 때 입력했던 내용 사라짐
 }
 
 function addTask() {
@@ -46,16 +48,16 @@ function render() {
             resultHTML += `<div class="task">
             <div class="task-done">${list[i].taskContent}</div>
             <div>
-                <button onclick="toggleComplete('${list[i].id}')">Check</button>
-                <button onclick="deleteTask('${list[i].id}')">Delete</button>
+                <button class="button1" onclick="toggleComplete('${list[i].id}')">Check</button>
+                <button class="button2" onclick="deleteTask('${list[i].id}')">Delete</button>
             </div>
         </div>`;
         } else {
             resultHTML += `<div class="task">
         <div>${list[i].taskContent}</div>
         <div>
-            <button onclick="toggleComplete('${list[i].id}')">Check</button>
-            <button onclick="deleteTask('${list[i].id}')">Delete</button>
+            <button class="button1" onclick="toggleComplete('${list[i].id}')">Check</button>
+            <button class="button2" onclick="deleteTask('${list[i].id}')">Delete</button>
         </div>
     </div>`;
 
